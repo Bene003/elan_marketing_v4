@@ -9,14 +9,14 @@ import { alternances, estLangue } from "@/lib/i18n";
 
 const T = {
   en: {
-    metaTitre: "Book a Free Discovery Call",
+    metaTitre: "Book a Discovery Call",
     metaDescription:
-      "Book a free 45-minute discovery call with Superflux, a marketing and growth consultancy, or send us a message.",
+      "Book a discovery call with Superflux, a growth consultancy for small businesses, or send us a message.",
     eyebrow: "Contact",
-    titre: "Book your free",
-    accent: "45-minute discovery call",
+    titre: "Book a",
+    accent: "discovery call",
     intro:
-      "Pick a time slot, free and with no commitment. If you'd rather write, the form below works just as well.",
+      "Pick a time slot that suits you. If you'd rather write, the form below works just as well.",
     ecrire: "Or send us a message",
     ecrireTitre: "Tell us what's holding you back",
     ecrireSous: "The more specific you are, the more useful our first reply will be.",
@@ -24,14 +24,14 @@ const T = {
     adresse: "Address",
   },
   fr: {
-    metaTitre: "Contact et diagnostic gratuit",
+    metaTitre: "Contact et prise de rendez-vous",
     metaDescription:
-      "Réservez un diagnostic gratuit de 45 minutes avec Superflux, agence marketing et de croissance, ou écrivez-nous.",
+      "Réservez un diagnostic avec Superflux, accompagnement et croissance des PME, ou écrivez-nous.",
     eyebrow: "Contact",
-    titre: "Réservez un diagnostic",
-    accent: "de 45 minutes",
+    titre: "Réservez",
+    accent: "un diagnostic",
     intro:
-      "Choisissez un créneau, sans frais et sans suite obligatoire. Si vous préférez écrire, le formulaire plus bas fonctionne tout aussi bien.",
+      "Choisissez le créneau qui vous convient. Si vous préférez écrire, le formulaire plus bas fonctionne tout aussi bien.",
     ecrire: "Ou écrivez-nous",
     ecrireTitre: "Dites-nous ce qui vous bloque",
     ecrireSous: "Plus vous êtes précis, plus notre première réponse sera utile.",

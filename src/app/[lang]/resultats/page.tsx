@@ -15,7 +15,7 @@ const T = {
     intro:
       "Every case shows its starting point and its time frame. A number without context proves nothing.",
     ctaTitre: "Does your situation look like one of these?",
-    ctaTexte: "Forty-five minutes to talk it through, free and with no commitment.",
+    ctaTexte: "Let's talk it through.",
   },
   fr: {
     metaTitre: "Résultats",
@@ -27,7 +27,7 @@ const T = {
     intro:
       "Chaque cas est présenté avec son point de départ et sa période. Un chiffre sans contexte ne prouve rien.",
     ctaTitre: "Votre situation ressemble à l'une d'elles ?",
-    ctaTexte: "Quarante-cinq minutes pour en parler, sans frais et sans suite obligatoire.",
+    ctaTexte: "Parlons-en.",
   },
 };
 

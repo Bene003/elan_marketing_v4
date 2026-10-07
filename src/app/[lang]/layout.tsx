@@ -5,7 +5,6 @@ import "../globals.css";
 import { display, sans } from "../polices";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { Ruban } from "@/components/v4/sections";
 import { baseUrl, entreprise, siteName } from "@/content/entreprise";
 import { estLangue, parametresLangues, type Langue } from "@/lib/i18n";
 
@@ -16,13 +15,13 @@ const META: Record<Langue, { titre: string; description: string; locale: string 
   en: {
     titre: `Small Business Growth & Branding Consulting | ${siteName}`,
     description:
-      "Growth consulting for small businesses: business operations, branding, brand positioning and a 90-day growth roadmap. Book a free 45-minute discovery call.",
+      "Growth consulting for small businesses: business operations, branding, brand positioning and a 90-day growth roadmap.",
     locale: "en_CA",
   },
   fr: {
     titre: `${siteName}, structuration et croissance des PME`,
     description:
-      "Accompagnement des PME : structuration, image de marque, positionnement et feuille de route de croissance sur 90 jours. Diagnostic gratuit de 45 minutes.",
+      "Accompagnement des PME : structuration, image de marque, positionnement et feuille de route de croissance sur 90 jours.",
     locale: "fr_CA",
   },
 };
@@ -68,7 +67,6 @@ export default async function RootLayout({
           {lang === "en" ? "Skip to content" : "Aller au contenu"}
         </a>
 
-        <Ruban langue={lang} />
         <SiteHeader langue={lang} />
         <main id="contenu" className="flex-1">
           {children}

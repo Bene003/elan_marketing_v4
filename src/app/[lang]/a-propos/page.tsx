@@ -42,7 +42,7 @@ const T = {
       "Superflux works with outside specialists in design, video, web development, content, advertising and CRM. If that's your field, write to us.",
     ecrire: "Write to us",
     ctaTitre: "Let's talk about your business",
-    ctaTexte: "Forty-five minutes, free and with no commitment.",
+    ctaTexte: "A first conversation, by video call.",
   },
   fr: {
     metaTitre: "À propos",
@@ -81,7 +81,7 @@ const T = {
       "Superflux fait appel à des collaborateurs externes en design, vidéo, développement web, contenu, publicité et CRM. Si c'est votre métier, écrivez-nous.",
     ecrire: "Nous écrire",
     ctaTitre: "Parlons de votre entreprise",
-    ctaTexte: "Quarante-cinq minutes, sans frais et sans suite obligatoire.",
+    ctaTexte: "Un premier échange, en visioconférence.",
   },
 };
 

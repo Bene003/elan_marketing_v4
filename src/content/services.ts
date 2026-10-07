@@ -38,7 +38,7 @@ const fr: Service[] = [
     slug: "accompagnement-croissance",
     nom: "Accompagnement à la croissance",
     probleme:
-      "Les bonnes décisions se prennent seul, tard, et souvent dans l'urgence.",
+      "Les grandes décisions se prennent seul, tard, et souvent dans l'urgence.",
     resultat:
       "Un cadre de suivi régulier, des indicateurs revus, et un interlocuteur qui connaît votre dossier.",
   },

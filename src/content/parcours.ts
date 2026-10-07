@@ -42,7 +42,7 @@ export type ContenuParcours = {
 const fr: ContenuParcours = {
   titreMeta: "Accompagnement et croissance des PME",
   descriptionMeta:
-    "Structuration opérationnelle, image de marque, positionnement et stratégie de croissance pour les PME. Diagnostic gratuit de 45 minutes.",
+    "Structuration opérationnelle, image de marque, positionnement et stratégie de croissance pour les PME.",
 
   promesse:
     "Superflux aide les PME à mieux organiser leurs opérations, clarifier leur image et mettre en place les bonnes actions pour attirer plus de clients.",
@@ -174,7 +174,7 @@ const fr: ContenuParcours = {
 const en: ContenuParcours = {
   titreMeta: "Growth Consulting for Small Businesses",
   descriptionMeta:
-    "Business operations, branding, brand positioning and growth strategy for small businesses. Book a free 45-minute discovery call.",
+    "Business operations, branding, brand positioning and growth strategy for small businesses.",
   promesse:
     "Superflux helps small businesses streamline their operations, sharpen their brand image and put the right actions in place to win more clients.",
 
@@ -298,7 +298,7 @@ const en: ContenuParcours = {
 
   ctaTitre: "Forty-five minutes to find what's holding you back",
   ctaTexte:
-    "Book a free discovery call. We look at your situation and tell you what would have the most impact over the next 90 days.",
+    "Book a discovery call. We look at your situation and tell you what would have the most impact over the next 90 days.",
 };
 
 export const contenuEntreprises: Record<Langue, ContenuParcours> = { en, fr };

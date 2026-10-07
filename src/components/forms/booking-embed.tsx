@@ -45,8 +45,8 @@ export function BookingEmbed({ langue }: { langue: Langue }) {
   }
 
   const titre = en
-    ? "Book a free 45-minute discovery call with Superflux"
-    : "Réserver un diagnostic de 45 minutes avec Superflux";
+    ? "Book a discovery call with Superflux"
+    : "Réserver un diagnostic avec Superflux";
 
   const lienCal = lienCalDe(url);
   if (lienCal) return <CalendrierCal lienCal={lienCal} titre={titre} />;

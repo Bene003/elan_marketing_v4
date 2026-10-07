@@ -2103,57 +2103,6 @@ body {
   }
 }
 
-@keyframes situation-focus {
-  0% {
-    opacity: 0.4;
-    transform: scale(0.95);
-  }
-  38%,
-  62% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0.4;
-    transform: scale(0.95);
-  }
-}
-
-@media (width < 64rem) {
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .rail-situations > li {
-        animation: situation-focus linear both;
-        animation-timeline: view(inline);
-        animation-range: cover 0% cover 100%;
-        will-change: opacity, transform;
-      }
-    }
-  }
-}
-
-@media (width >= 64rem) {
-  .rail-situations > li {
-    transition:
-      opacity 300ms var(--ease-elan),
-      transform 300ms var(--ease-elan);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .rail-situations:hover > li,
-    .rail-situations:focus-within > li {
-      opacity: 0.5;
-      transform: scale(0.985);
-    }
-
-    .rail-situations > li:hover,
-    .rail-situations > li:focus-within {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-}
-
 .schema-raison {
   view-timeline-name: --schema;
   view-timeline-axis: block;

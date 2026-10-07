@@ -10,7 +10,7 @@ const T = {
   en: {
     metaTitre: "Branding, Positioning & Growth Services",
     metaDescription:
-      "Business operations, branding, brand positioning and growth strategy for small businesses. Book a free 45-minute discovery call.",
+      "Business operations, branding, brand positioning and growth strategy for small businesses.",
     eyebrow: "Services",
     titre: "What we solve,",
     accent: "and for whom",
@@ -22,14 +22,14 @@ const T = {
     impactSous:
       "A small gap each month goes unnoticed. After twelve months, it's the distance between two trajectories.",
     entreprises: "For small businesses",
-    ctaTitre: "We'll look at your situation in 45 minutes",
+    ctaTitre: "Let's look at your situation",
     ctaTexte:
-      "The discovery call is free, with no commitment. You leave with a clear read on your situation, whether we work together or not.",
+      "You leave the discovery call with a clear read on your situation, whether we work together or not.",
   },
   fr: {
     metaTitre: "Services marketing et accompagnement",
     metaDescription:
-      "Structuration opérationnelle, branding, positionnement et accompagnement à la croissance pour les PME. Diagnostic gratuit de 45 minutes.",
+      "Structuration opérationnelle, branding, positionnement et accompagnement à la croissance pour les PME.",
     eyebrow: "Services",
     titre: "Ce que nous réglons,",
     accent: "et pour qui",
@@ -41,9 +41,9 @@ const T = {
     impactSous:
       "Un écart de quelques points par mois ne se voit pas. Au bout de douze, il est devenu la distance entre deux trajectoires.",
     entreprises: "Pour les entreprises",
-    ctaTitre: "On regarde votre situation en 45 minutes",
+    ctaTitre: "Regardons votre situation",
     ctaTexte:
-      "Le diagnostic est sans frais et sans suite obligatoire. Vous repartez avec une lecture de votre situation, que nous travaillions ensemble ou non.",
+      "Vous repartez du diagnostic avec une lecture claire de votre situation, que nous travaillions ensemble ou non.",
   },
 };
 

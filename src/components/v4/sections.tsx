@@ -1,37 +1,9 @@
-import Link from "next/link";
 import type { CSSProperties } from "react";
-import { ArrowRight } from "lucide-react";
-import { ButtonLink, Container, Section, SectionHeading } from "@/components/ui";
+import { ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { etapesMethode } from "@/content/methode";
 import { faqCommune } from "@/content/faq";
 import { etudesDeCas } from "@/content/cas";
 import { lien, type Langue } from "@/lib/i18n";
-
-const RUBAN = {
-  en: { texte: "Free 45-minute discovery call, no strings attached.", lien: "Book now" },
-  fr: {
-    texte: "Diagnostic de 45 minutes, sans frais et sans suite obligatoire.",
-    lien: "Réserver",
-  },
-};
-
-export function Ruban({ langue }: { langue: Langue }) {
-  const t = RUBAN[langue];
-  return (
-    <div className="sur-sombre bg-brand-strong text-on-brand">
-      <Container className="flex min-h-9 flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-[0.78rem] leading-snug">
-        <span>{t.texte}</span>
-        <Link
-          href={lien(langue, "contact")}
-          className="inline-flex items-center gap-1 font-semibold underline underline-offset-4 transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        >
-          {t.lien}
-          <ArrowRight aria-hidden="true" className="size-3.5" />
-        </Link>
-      </Container>
-    </div>
-  );
-}
 
 const RAISONS = {
   fr: [
@@ -85,7 +57,7 @@ const RAISONS = {
 export function PourquoiSuperflux({ langue }: { langue: Langue }) {
   const en = langue === "en";
   return (
-    <Section tone="creuse">
+    <Section tone="clair">
       <SectionHeading
         eyebrow={en ? "Why Superflux" : "Pourquoi Superflux"}
         title={
@@ -226,55 +198,67 @@ function SchemaRaison({ cle }: { cle: string }) {
 const PREUVE = {
   en: {
     eyebrow: "Results",
-    titre: "Results that come",
-    accent: "with their context",
-    sous: "A number without its time frame or starting point proves nothing. Every case shows both.",
+    titre: "Other business owners",
+    accent: "had the same problem",
+    avant: "Where they started",
+    apres: "With Superflux",
     voir: "See both cases in detail",
   },
   fr: {
-    eyebrow: "Ce que ça donne",
-    titre: "Des résultats qui viennent",
-    accent: "avec leur contexte",
-    sous: "Un chiffre sans sa période ni sa situation de départ ne prouve rien. Chaque cas est présenté avec les deux.",
+    eyebrow: "Résultats",
+    titre: "D'autres dirigeants",
+    accent: "avaient le même problème",
+    avant: "Au départ",
+    apres: "Avec Superflux",
     voir: "Voir les deux cas en détail",
   },
 };
 
+// Deuxième défilement : la preuve que d'autres sont passés par là, du
+// problème de départ au résultat chiffré.
 export function Preuve({ langue }: { langue: Langue }) {
   const t = PREUVE[langue];
 
   return (
-    <Section tone="clair" grille>
+    <Section tone="creuse" className="py-12 sm:py-20">
       <SectionHeading
+        taille="moyen"
         eyebrow={t.eyebrow}
         title={
           <>
             {t.titre} <em className="text-brand italic">{t.accent}</em>
           </>
         }
-        subtitle={t.sous}
       />
 
-      <ul className="mt-12 grid gap-5 lg:grid-cols-2">
+      <ul className="mt-7 grid gap-3 sm:mt-12 lg:grid-cols-2 lg:gap-5">
         {etudesDeCas[langue].map((cas) => (
           <li
             key={cas.slug}
-            className="flex flex-col rounded-3xl border border-line bg-surface p-7 sm:p-8"
+            className="flex flex-col rounded-3xl border border-line bg-surface p-5 sm:p-8"
           >
-            <p className="text-[0.82rem] leading-snug text-ink-muted">{cas.contexte}</p>
-            <p className="mt-6 font-display text-[clamp(2rem,3.6vw,2.8rem)] leading-none font-extrabold tracking-[-0.04em] text-brand">
-              {cas.chiffre.valeur}
+            <p className="text-[0.82rem] leading-snug font-semibold text-ink">{cas.contexte}</p>
+            <p className="mt-3 text-[0.65rem] font-medium tracking-[0.2em] text-ink-muted uppercase">
+              {t.avant}
             </p>
-            <p className="mt-3 text-[0.95rem] leading-snug font-semibold text-ink">
-              {cas.chiffre.libelle}
-            </p>
-            <p className="mt-2 text-xs tracking-wide text-ink-muted">{cas.chiffre.periode}</p>
-            <p className="mt-6 text-[0.9rem] leading-[1.7] text-ink-muted">{cas.changement}</p>
+            <p className="mt-1.5 text-[0.84rem] leading-[1.55] text-ink-muted">{cas.probleme}</p>
+            <div className="mt-auto pt-4">
+              <p className="border-t border-line pt-4 text-[0.65rem] font-medium tracking-[0.2em] text-brand uppercase">
+                {t.apres}
+              </p>
+              <p className="mt-2 font-display text-[clamp(1.9rem,3.6vw,2.8rem)] leading-none font-extrabold tracking-[-0.04em] text-brand">
+                {cas.chiffre.valeur}
+              </p>
+              <p className="mt-2 text-[0.92rem] leading-snug font-semibold text-ink">
+                {cas.chiffre.libelle}
+              </p>
+              <p className="mt-1.5 text-xs tracking-wide text-ink-muted">{cas.chiffre.periode}</p>
+            </div>
           </li>
         ))}
       </ul>
 
-      <div className="mt-10">
+      <div className="mt-6">
         <ButtonLink href={lien(langue, "resultats")} variant="secondary" withArrow>
           {t.voir}
         </ButtonLink>
@@ -296,26 +280,26 @@ export function PremierEchange({ langue }: { langue: Langue }) {
             title={
               en ? (
                 <>
-                  Forty-five minutes to see{" "}
+                  A first conversation to see{" "}
                   <em className="text-brand italic">if it&apos;s a fit</em>
                 </>
               ) : (
                 <>
-                  Quarante-cinq minutes pour savoir{" "}
+                  Un premier échange pour savoir{" "}
                   <em className="text-brand italic">si c&apos;est pertinent</em>
                 </>
               )
             }
             subtitle={
               en
-                ? "Free, no commitment, by video call. You leave with a clear read on your situation, whether we work together or not."
-                : "Sans frais, sans engagement, en visioconférence. Vous repartez avec une lecture de votre situation, que nous travaillions ensemble ou non."
+                ? "By video call. You leave with a clear read on your situation, whether we work together or not."
+                : "En visioconférence. Vous repartez avec une lecture claire de votre situation, que nous travaillions ensemble ou non."
             }
           />
 
           <div className="mt-10 flex flex-wrap gap-3">
             <ButtonLink href={lien(langue, "contact")} withArrow>
-              {en ? "Book your discovery call" : "Réserver un créneau"}
+              {en ? "Book a call" : "Prendre rendez-vous"}
             </ButtonLink>
             <ButtonLink href={lien(langue, "methode")} variant="secondary">
               {en ? "See our full process" : "Voir la méthode complète"}
@@ -420,32 +404,5 @@ export function FaqCompacte({ langue }: { langue: Langue }) {
         </ul>
       </div>
     </Section>
-  );
-}
-
-export function EnteteParOuCommencer({ langue }: { langue: Langue }) {
-  const en = langue === "en";
-  return (
-    <SectionHeading
-      eyebrow={en ? "Where to start" : "Par où commencer"}
-      title={
-        en ? (
-          <>
-            Find your situation,{" "}
-            <em className="text-brand italic">we&apos;ll tell you what to look at</em>
-          </>
-        ) : (
-          <>
-            Reconnaissez votre situation,{" "}
-            <em className="text-brand italic">on vous dit quoi regarder</em>
-          </>
-        )
-      }
-      subtitle={
-        en
-          ? "Four situations we see in small businesses. Stop on the one that sounds like yours."
-          : "Quatre situations que nous voyons en PME. Arrêtez-vous sur celle qui vous ressemble."
-      }
-    />
   );
 }

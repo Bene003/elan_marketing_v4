@@ -4,7 +4,7 @@ import type { QuestionFaq } from "./parcours";
 export const faqCommune: Record<Langue, QuestionFaq[]> = {
   fr: [
     {
-      question: "Comment se passe le diagnostic de 45 minutes ?",
+      question: "Comment se passe le diagnostic ?",
       reponse:
         "Vous choisissez un créneau dans le calendrier et vous répondez à quelques questions sur votre situation. Nous les lisons avant l'appel, pour que les quarante-cinq minutes servent à creuser plutôt qu'à faire les présentations. Nous nous parlons ensuite en visioconférence, sans frais et sans suite obligatoire.",
     },
@@ -31,7 +31,7 @@ export const faqCommune: Record<Langue, QuestionFaq[]> = {
   ],
   en: [
     {
-      question: "How does the free 45-minute discovery call work?",
+      question: "How does the discovery call work?",
       reponse:
         "You pick a time slot in the calendar and answer a few questions about your situation. We read them before the call, so the forty-five minutes go into digging deeper instead of introductions. Then we talk by video call, free and with no commitment.",
     },
