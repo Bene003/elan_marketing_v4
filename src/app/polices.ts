@@ -1,6 +1,6 @@
-import { Inter, Manrope } from "next/font/google";
+import { Geist, Manrope } from "next/font/google";
 
-export const sans = Inter({
+export const sans = Geist({
   variable: "--font-sans-family",
   subsets: ["latin"],
   weight: ["400", "500"],

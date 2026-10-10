@@ -39,9 +39,9 @@ export function SiteHeader({ langue }: { langue: Langue }) {
             variant="invert"
             className="entete-cta order-2 min-h-10 px-4 py-2 text-[0.82rem] whitespace-nowrap lg:order-4 lg:px-5"
           >
-            <span className="lg:hidden">{langue === "en" ? "Book" : "Réserver"}</span>
+            <span className="lg:hidden">{langue === "en" ? "Book a call" : "Rendez-vous"}</span>
             <span className="max-lg:hidden">
-              {langue === "en" ? "Book a discovery call" : "Réserver un diagnostic"}
+              {langue === "en" ? "Book a call" : "Prendre rendez-vous"}
             </span>
           </ButtonLink>
 

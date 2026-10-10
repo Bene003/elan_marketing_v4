@@ -2169,3 +2169,859 @@ body {
     }
   }
 }
+
+/* ==========================================================================
+   Accueil : une page à deux côtés. À gauche la PME qui a grandi (sol clair),
+   à droite la structure qui la rattrape (sol forêt). La ligne de partage
+   tient toute la page, puis file vers la gauche à la clôture.
+   Variables publiées par SceneAccueil : --hp, --c, --mx, --my.
+   ========================================================================== */
+.accueil {
+  --split: 46%;
+  --g: max(1.25rem, calc((100vw - 74rem) / 2));
+  --ease-sortie: cubic-bezier(0.23, 1, 0.32, 1);
+  --hp: 0;
+  --c: 0;
+  --mx: 0;
+  --my: 0;
+  position: relative;
+  isolation: isolate;
+}
+
+.accueil-gauche {
+  background: var(--color-surface-raised);
+  color: var(--color-ink);
+  padding: 1.25rem 1.25rem;
+}
+
+.accueil-droite {
+  background: var(--color-surface-invert);
+  color: var(--color-ink-invert);
+  padding: 1.25rem 1.25rem;
+}
+
+.accueil-entete .accueil-gauche {
+  padding-top: 3.5rem;
+  padding-bottom: 1.25rem;
+}
+
+.accueil-entete-droite:empty {
+  display: none;
+}
+
+.accueil-etiquette {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.accueil-droite .accueil-etiquette,
+.accueil-etiquette-sombre {
+  color: var(--color-ink-invert-muted);
+}
+
+.accueil-piece {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  min-height: 2.25rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  transition: color 160ms var(--ease-sortie);
+}
+
+.accueil-piece:hover {
+  color: var(--color-ink-invert);
+}
+
+.accueil-piece-point {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-accent);
+  transition: background-color 300ms var(--ease-sortie);
+}
+
+[data-lue] .accueil-piece-point,
+.accueil:not([data-scene]) .accueil-piece-point {
+  background: var(--color-accent);
+}
+
+.accueil-cta {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  padding-inline: 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-surface-invert);
+  transition:
+    background-color 160ms var(--ease-sortie),
+    transform 120ms var(--ease-sortie);
+}
+
+.accueil-cta:hover {
+  background: #ffffff;
+}
+
+.accueil-cta:active,
+.accueil-cta-second:active {
+  transform: scale(0.97);
+}
+
+.accueil-cta-second {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--color-invert-line);
+  padding-inline: 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-ink-invert);
+  transition:
+    background-color 160ms var(--ease-sortie),
+    border-color 160ms var(--ease-sortie),
+    transform 120ms var(--ease-sortie);
+}
+
+.accueil-cta-second:hover {
+  border-color: var(--color-accent);
+  background: rgb(255 255 255 / 0.06);
+}
+
+.accueil-cta:focus-visible,
+.accueil-cta-second:focus-visible,
+.accueil-piece:focus-visible,
+.accueil-lien:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.accueil-lien {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+/* --- Héros : trois plans ------------------------------------------------ */
+.accueil-scene {
+  position: relative;
+  overflow: hidden;
+  height: clamp(16rem, 42svh, 26rem);
+  background: #1d2a22;
+}
+
+.accueil-plan {
+  object-fit: cover;
+  object-position: 58% 22%;
+}
+
+.accueil-plan-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 900ms ease-out;
+}
+
+.accueil-plan-video[data-pret] {
+  opacity: 1;
+}
+
+.accueil-plan-lumiere {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(55% 45% at 64% 4%, rgb(255 247 230 / 0.42), transparent 72%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.accueil-scene-voile {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 22%;
+  background: linear-gradient(to top, rgb(12 31 20 / 0.5), transparent);
+  pointer-events: none;
+}
+
+.accueil-heros-texte {
+  padding-top: 2rem;
+  padding-bottom: 2.75rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accueil-plan-decor {
+    transform-origin: 50% 0;
+    transform: translate3d(calc(var(--mx) * -10px), calc(var(--hp) * -3%), 0)
+      scale(calc(1 + var(--hp) * 0.04));
+    will-change: transform;
+  }
+
+  .accueil-plan-personnes {
+    transform-origin: 50% 100%;
+    transform: translate3d(calc(var(--mx) * 14px), calc(var(--my) * 4px), 0)
+      scale(calc(1 + var(--hp) * 0.09));
+    will-change: transform;
+  }
+
+  .accueil-plan-video {
+    transform-origin: 50% 100%;
+    transform: translate3d(calc(var(--mx) * 8px), 0, 0) scale(calc(1 + var(--hp) * 0.07));
+    will-change: transform;
+  }
+
+  .accueil-plan-lumiere {
+    opacity: calc(1 - var(--hp) * 0.75);
+    transform: translate3d(calc(var(--hp) * -8% + var(--mx) * 6px), 0, 0);
+  }
+}
+
+/* --- Apparitions -------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .accueil[data-scene] [data-revele="gauche"] {
+    clip-path: inset(0 0 0 100%);
+    transition: clip-path 850ms var(--ease-sortie);
+  }
+
+  .accueil[data-scene] [data-revele="droite"] {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 850ms var(--ease-sortie) 120ms;
+  }
+
+  .accueil[data-scene] [data-revele][data-vu] {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .accueil[data-scene] .accueil-apparait {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 600ms var(--ease-sortie),
+      transform 600ms var(--ease-sortie);
+  }
+
+  .accueil[data-scene] .accueil-apparait[data-vu] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accueil[data-scene] [data-revele]:not([data-vu]) {
+    opacity: 0;
+  }
+
+  .accueil[data-scene] [data-revele] {
+    transition: opacity 400ms ease-out;
+  }
+}
+
+/* --- Clôture ------------------------------------------------------------ */
+.accueil-cloture {
+  background: var(--color-surface-invert);
+  color: var(--color-ink-invert);
+  padding: 4rem 1.25rem;
+}
+
+.accueil-cloture-rappel {
+  display: none;
+}
+
+.accueil-cloture-contenu {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.accueil-schema {
+  width: 100%;
+  max-width: 24rem;
+  overflow: visible;
+}
+
+.accueil-schema-trait {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+.accueil-schema-centre rect {
+  fill: var(--color-invert-raised);
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+.accueil-schema-centre text {
+  fill: var(--color-ink-invert);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.accueil-schema-noeud circle {
+  fill: var(--color-accent);
+}
+
+.accueil-schema-noeud text {
+  fill: var(--color-ink-invert);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* --- Bureau : la ligne de partage --------------------------------------- */
+.accueil-fond,
+.accueil-bande {
+  display: none;
+}
+
+@media (width >= 64rem) {
+  .accueil-fond {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--color-surface-raised);
+    pointer-events: none;
+  }
+
+  .accueil-fond::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-surface-invert);
+    clip-path: inset(0 0 0 calc(var(--split) * (1 - var(--c))));
+  }
+
+  .accueil-fond::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--split) * (1 - var(--c)));
+    z-index: 1;
+    width: 1px;
+    background: color-mix(in srgb, var(--color-accent) 60%, transparent);
+    opacity: calc(1 - var(--c));
+  }
+
+  .accueil-rangee {
+    display: grid;
+    grid-template-columns: var(--split) 1fr;
+  }
+
+  .accueil-gauche,
+  .accueil-droite {
+    background: transparent;
+  }
+
+  .accueil-gauche {
+    padding: 2rem 3.5rem 2rem var(--g);
+  }
+
+  .accueil-droite {
+    padding: 2rem var(--g) 2rem 3.5rem;
+  }
+
+  .accueil-section {
+    padding-top: 6.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .accueil-entete .accueil-gauche,
+  .accueil-entete .accueil-droite {
+    padding-top: 0;
+    padding-bottom: 1.75rem;
+    align-self: end;
+  }
+
+  .accueil-entete-droite:empty {
+    display: block;
+  }
+
+  .accueil-ligne > :first-child {
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+
+  .accueil-ligne > :last-child {
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  /* Bande fixe sous l'en-tête : les deux côtés, et les quatre pièces. */
+  .accueil-bande {
+    display: grid;
+    grid-template-columns: var(--split) 1fr;
+    position: fixed;
+    top: 4rem;
+    right: 0;
+    left: 0;
+    z-index: 40;
+    height: 2.5rem;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 1;
+    transition: opacity 300ms var(--ease-sortie);
+  }
+
+  .accueil[data-bande="cachee"] .accueil-bande {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .accueil-bande-gauche {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1.25rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+    background: var(--color-surface-raised);
+    color: var(--color-ink-muted);
+  }
+
+  .accueil-bande-droite {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-left: 1.25rem;
+    padding-right: var(--g);
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+    background: var(--color-surface-invert);
+    color: var(--color-ink-invert-muted);
+  }
+
+  .accueil-bande-titre {
+    white-space: nowrap;
+    color: var(--color-ink-invert);
+  }
+
+  .accueil-temoins {
+    display: flex;
+    gap: 1.1rem;
+    overflow: hidden;
+  }
+
+  .accueil-temoins li {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    white-space: nowrap;
+    color: color-mix(in srgb, var(--color-ink-invert-muted) 70%, transparent);
+    transition: color 400ms var(--ease-sortie);
+  }
+
+  .accueil-temoins li::before {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    transition:
+      background-color 400ms var(--ease-sortie),
+      transform 400ms var(--ease-sortie);
+  }
+
+  .accueil-temoins li[data-allume] {
+    color: var(--color-accent);
+  }
+
+  .accueil-temoins li[data-allume]::before {
+    background: currentColor;
+    transform: scale(1.25);
+  }
+
+  /* Héros : la photo tient le côté PME, le texte le côté structure. */
+  .accueil-heros {
+    min-height: calc(100svh - 4rem);
+  }
+
+  .accueil-scene {
+    height: auto;
+  }
+
+  .accueil-scene-voile {
+    display: none;
+  }
+
+  .accueil-heros-texte {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Clôture épinglée : la ligne de partage file vers la gauche. */
+  .accueil-cloture {
+    background: transparent;
+    padding: 0;
+  }
+
+  .accueil-cloture-contenu {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .accueil-schema {
+    max-width: 30rem;
+  }
+}
+
+@media (width >= 64rem) and (prefers-reduced-motion: no-preference) {
+  .accueil-cloture {
+    height: 230vh;
+  }
+
+  .accueil-cloture-scene {
+    position: sticky;
+    top: 4rem;
+    display: grid;
+    height: calc(100svh - 4rem);
+    align-items: center;
+    overflow: hidden;
+    padding-inline: var(--g);
+  }
+
+  .accueil-cloture-rappel {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: var(--g);
+    max-width: calc(var(--split) - var(--g) - 3.5rem);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.6vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+    opacity: calc(1 - var(--c) * 1.8);
+    transform: translate3d(calc(var(--c) * -6vw), -50%, 0);
+  }
+
+  .accueil-cloture-contenu {
+    opacity: calc(var(--c) * 2.4 - 1.25);
+    transform: translate3d(calc((1 - var(--c)) * 10vw), 0, 0);
+  }
+
+  .accueil-schema-trait {
+    stroke-dasharray: 1;
+    stroke-dashoffset: max(0, calc(1 - (var(--c) * 2.2 - 1.1 - var(--rang) * 0.08)));
+  }
+
+  .accueil-schema-noeud {
+    opacity: calc(var(--c) * 3.2 - 2.3 - var(--rang) * 0.12);
+  }
+}
+
+@media (width >= 64rem) and (prefers-reduced-motion: reduce) {
+  .accueil-cloture {
+    background: var(--color-surface-invert);
+    padding: 6rem var(--g);
+  }
+}
+
+/* --- Problèmes : photo de la situation, animation de la solution ------- */
+.accueil-probleme {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.accueil-photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 0.6rem;
+  background: var(--color-line);
+}
+
+.accueil-solution {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.accueil-solution .accueil-piece {
+  margin-top: 0;
+}
+
+.accueil-anim {
+  width: 9.5rem;
+  flex-shrink: 0;
+  order: 2;
+}
+
+.anim {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+@media (width >= 64rem) {
+  .accueil-probleme {
+    grid-template-columns: 13rem 1fr;
+    gap: 1.75rem;
+  }
+
+  .accueil-solution {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .accueil-anim {
+    order: 0;
+    width: min(100%, 17rem);
+  }
+}
+
+/* --- Animations des pièces ---------------------------------------------
+   Par défaut : l'état rangé. Scène active et rangée pas encore lue : le
+   désordre (variables --cx --cy --cr --cs --cf posées par élément). */
+.anim-boite,
+.anim-tuile {
+  fill: var(--color-invert-raised);
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+.anim-tuile {
+  fill: var(--color-accent);
+  stroke: none;
+}
+
+.anim-ligne {
+  fill: var(--color-ink-invert-muted);
+}
+
+.anim-role {
+  fill: var(--color-accent);
+}
+
+.anim-embleme {
+  fill: var(--color-surface-invert);
+}
+
+.anim-fleche {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.anim-pareil {
+  fill: var(--color-ink-invert-muted);
+  opacity: 0.45;
+}
+
+.anim-elu {
+  fill: var(--color-accent);
+}
+
+.anim-halo {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+
+.anim-chaos {
+  fill: none;
+  stroke: var(--color-ink-invert-muted);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  opacity: 0.18;
+}
+
+.anim-courbe {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+}
+
+.anim-suivi {
+  fill: var(--color-surface-invert);
+  stroke: var(--color-accent);
+  stroke-width: 2;
+}
+
+.anim-el,
+.anim-fleche,
+.anim-halo,
+.anim-suivi {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .anim-el,
+  .anim-fleche,
+  .anim-halo,
+  .anim-suivi,
+  .anim-chaos,
+  .anim-courbe,
+  .anim-tuile {
+    transition:
+      transform 900ms var(--ease-sortie) calc(var(--d, 0) * 90ms),
+      opacity 500ms var(--ease-sortie) calc(var(--d, 0) * 90ms),
+      fill 700ms var(--ease-sortie) calc(var(--d, 0) * 90ms),
+      stroke-dashoffset 1100ms var(--ease-sortie) 150ms;
+  }
+
+  .accueil[data-scene] li:not([data-joue]) .anim-el {
+    transform: translate(var(--cx), var(--cy)) rotate(var(--cr)) scale(var(--cs));
+  }
+
+  .accueil[data-scene] li:not([data-joue]) .anim-tuile {
+    fill: var(--cf, var(--color-accent));
+  }
+
+  .accueil[data-scene] li:not([data-joue]) .anim-fleche,
+  .accueil[data-scene] li:not([data-joue]) .anim-halo,
+  .accueil[data-scene] li:not([data-joue]) .anim-suivi {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  .accueil[data-scene] li:not([data-joue]) .anim-chaos {
+    opacity: 1;
+  }
+
+  .accueil[data-scene] li:not([data-joue]) .anim-courbe {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* --- Preuves : le chiffre et sa forme ---------------------------------- */
+.accueil-preuve {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.anim-barres {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.9rem;
+  height: 8.5rem;
+  flex-shrink: 0;
+}
+
+.anim-barre-col {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.anim-barre-rail {
+  display: flex;
+  width: 2.6rem;
+  flex: 1;
+  align-items: flex-end;
+}
+
+.anim-barre {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.35rem 0.35rem 0 0;
+  background: color-mix(in srgb, var(--color-ink-invert-muted) 45%, transparent);
+  transform: scaleY(var(--h));
+  transform-origin: bottom;
+}
+
+.anim-barre[data-final] {
+  background: var(--color-accent);
+}
+
+.anim-barre-libelle {
+  font-size: 0.66rem;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-ink-invert-muted);
+  max-width: 4.5rem;
+}
+
+.anim-magasins {
+  display: grid;
+  grid-template-columns: repeat(20, 0.42rem);
+  gap: 0.32rem;
+  flex-shrink: 0;
+}
+
+.anim-magasins span {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accueil[data-scene] .anim-barre[data-final] {
+    transition: transform 1300ms var(--ease-sortie) 150ms;
+  }
+
+  .accueil[data-scene] [data-revele]:not([data-vu]) .anim-barre[data-final] {
+    transform: scaleY(0.4);
+  }
+
+  .accueil[data-scene] .anim-magasins span {
+    transition: background-color 300ms ease-out calc(var(--i) * 6ms);
+  }
+
+  .accueil[data-scene] [data-revele]:not([data-vu]) span:not([data-depart]) {
+    background: color-mix(in srgb, var(--color-ink-invert-muted) 22%, transparent);
+  }
+}
+
+@media (width < 40rem) {
+  .accueil-preuve {
+    flex-wrap: wrap;
+  }
+
+  .anim-barres {
+    height: 6.5rem;
+    gap: 0.6rem;
+  }
+
+  .anim-barre-rail {
+    width: 2rem;
+  }
+
+  .anim-magasins {
+    grid-template-columns: repeat(20, 0.36rem);
+    gap: 0.28rem;
+  }
+
+  .anim-magasins span {
+    width: 0.36rem;
+    height: 0.36rem;
+  }
+}

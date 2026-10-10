@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { alternances, estLangue } from "@/lib/i18n";
-import { HeroV4 } from "@/components/v4/hero-v4";
-import { ParOuCommencer } from "@/components/v4/par-ou-commencer";
+import { SceneAccueil } from "@/components/accueil/scene";
 import {
-  FaqCompacte,
-  PourquoiSuperflux,
-  PremierEchange,
-  Preuve,
-} from "@/components/v4/sections";
+  BandePartage,
+  ClotureAccueil,
+  HerosAccueil,
+  PourquoiAccueil,
+  PreuvesAccueil,
+  ProblemesAccueil,
+} from "@/components/accueil/sections";
 
 export async function generateMetadata({
   params,
@@ -22,13 +23,15 @@ export default async function Accueil({ params }: PageProps<"/[lang]">) {
   if (!estLangue(lang)) return null;
 
   return (
-    <>
-      <HeroV4 langue={lang} />
-      <ParOuCommencer langue={lang} />
-      <Preuve langue={lang} />
-      <PourquoiSuperflux langue={lang} />
-      <PremierEchange langue={lang} />
-      <FaqCompacte langue={lang} />
-    </>
+    <div data-accueil className="accueil">
+      <div aria-hidden="true" className="accueil-fond" />
+      <BandePartage langue={lang} />
+      <HerosAccueil langue={lang} />
+      <ProblemesAccueil langue={lang} />
+      <PreuvesAccueil langue={lang} />
+      <PourquoiAccueil langue={lang} />
+      <ClotureAccueil langue={lang} />
+      <SceneAccueil />
+    </div>
   );
 }
